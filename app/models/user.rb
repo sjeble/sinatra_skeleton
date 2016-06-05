@@ -1,6 +1,6 @@
+require 'bcrypt'
 
-
-
+class User < ActiveRecord::Base
   def password
     @password ||= BCrypt::Password.new(hashed_password)
   end
@@ -10,7 +10,7 @@
     self.hashed_password = @password
   end
 
-
   def authenticate?(email, password)
     self.email == email && self.password == password
   end
+end
