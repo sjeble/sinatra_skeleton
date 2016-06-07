@@ -12,6 +12,7 @@ post '/users' do
   end
 end
 
+# User profile
 get '/users/:user_id' do
   if logged_in?
     @user = User.find_by(id: params[:user_id])
@@ -30,14 +31,15 @@ end
 post '/login' do
   @user = User.find_by(email: params[:email])
   if @user && @user.authenticate(params[:password])
-    session[:user_id] = @user.id
+    login(@user)
     redirect '/users/#{@user.id}'
   else
     erb :"users/login"
   end
 end
 
+# Logout
 get '/logout' do
-  session.clear
+  logout
   redirect '/'
 end
