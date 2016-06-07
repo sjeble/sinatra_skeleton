@@ -1,0 +1,14 @@
+<%= erb(:"_navigation") %>
+
+<h1>Register</h1>
+<form action="/users" method="post">
+  <label for="first_name">first name:</label>
+  <input type="text" name="user[first_name]"><br>
+  <label for="last_name">last name:</label>
+  <input type="text" name="user[last_name]"><br>
+  <label for="email">email:</label>
+  <input type="text" name="user[email]"><br>
+  <label for="password">password:</label>
+  <input type="password" name="user[password]"><br>
+  <input type="submit" value="register">
+</form>
