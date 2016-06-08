@@ -1,6 +1,18 @@
 require 'bcrypt'
 
 class User < ActiveRecord::Base
+  has_many
+  has_many
+
+  validates :email, presence: true, uniquesness: true
+
+  validates :valid_email
+
+  def valid_email
+    unless email =~ /^.+@.+?\.(.+)$/
+      self.errors.add(:email, "Must be a valid email address")
+  end
+
   def password
     @password ||= BCrypt::Password.new(hashed_password)
   end
